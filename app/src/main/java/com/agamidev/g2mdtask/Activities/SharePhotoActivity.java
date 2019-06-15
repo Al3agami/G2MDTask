@@ -72,4 +72,10 @@ public class SharePhotoActivity extends AppCompatActivity implements ShareImageC
         this.bitmap = bm;
         iv_share.setImageBitmap(bm);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
 }

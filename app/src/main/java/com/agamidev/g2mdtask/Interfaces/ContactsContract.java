@@ -5,6 +5,7 @@ import android.widget.SimpleCursorAdapter;
 public interface ContactsContract {
     interface ContactsPresenterInterface{
         void loadContacts();
+        void onDestroy();
     }
 
 

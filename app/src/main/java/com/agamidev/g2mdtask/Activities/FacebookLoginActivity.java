@@ -20,11 +20,16 @@ import com.facebook.login.widget.LoginButton;
 
 import java.util.Arrays;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class FacebookLoginActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
     private static final String EMAIL = "email";
+    @BindView(R.id.login_button)
     LoginButton loginButton;
+    @BindView(R.id.cb_remember_me)
     CheckBox cbRememberMe;
     AccessToken accessToken;
     public static Boolean isRemembered;
@@ -34,12 +39,10 @@ public class FacebookLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_login);
+        ButterKnife.bind(this);
         callbackManager = CallbackManager.Factory.create();
 
         myPreferences = new MyPreferences(this);
-
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        cbRememberMe = (CheckBox) findViewById(R.id.cb_remember_me);
 
         isRemembered = false;
 
@@ -72,7 +75,7 @@ public class FacebookLoginActivity extends AppCompatActivity {
                             isRemembered = false;
                             myPreferences.storeLoginStatus(false);
                         }
-                        Toast.makeText(getApplicationContext(),"successfuly logged",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"successfully logged",Toast.LENGTH_LONG).show();
                         Intent i = new Intent(FacebookLoginActivity.this, MainActivity.class);
                         startActivity(i);
                         finish();

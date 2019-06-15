@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.MyViewHolder>  implements Filterable {
+public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.MyViewHolder>{
 
     private Context context;
     private ArrayList<CountryModel> countriesArrayList;
@@ -46,61 +46,11 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.MyVi
 
         holder.tv_country_name.setText(c.getName());
         holder.tv_country_brief.setText(c.getBrief());
-
-
-
-//        Glide.with(context)
-//                .load(n.getUrlToImage())
-//                .apply(new RequestOptions()
-//                        .placeholder(R.mipmap.load_image)
-//                        .fitCenter())
-//                .into(holder.iv_image);
-
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                recyclerItemClickListener.onItemClick(countriesListFiltered.get(holder.getAdapterPosition()));
-//            }
-//        });
-
     }
 
     @Override
     public int getItemCount() {
         return countriesListFiltered.size();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    countriesListFiltered = countriesArrayList;
-                } else {
-                    ArrayList<CountryModel> filteredList = new ArrayList<>();
-                    for (CountryModel row : countriesArrayList) {
-
-                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(row);
-                        }
-                    }
-
-                    countriesListFiltered = filteredList;
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = countriesListFiltered;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                countriesListFiltered = (ArrayList<CountryModel>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 
 

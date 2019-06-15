@@ -9,6 +9,7 @@ public interface CountriesContract {
     interface CountriesPresenterInterface{
         void addCountry(String name, String brief);
         void loadCountries(String row);
+        void onDestroy();
     }
 
     interface CountriesView{

@@ -8,6 +8,7 @@ public interface ShareImageContract {
     interface ShareImagePresenterInterface{
         void cacheAndSetImage(Uri uri);
         void shareImageToFacebook(Uri uri, Bitmap bm);
+        void onDestroy();
     }
 
     interface ShareImageViewInterface{

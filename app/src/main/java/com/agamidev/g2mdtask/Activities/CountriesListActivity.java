@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -64,11 +63,12 @@ public class CountriesListActivity extends AppCompatActivity implements Countrie
     public void loadCountries(String countryName){
         presenter.loadCountries(countryName);
     }
+
     public void addCountry(View view) {
         String countryName = et_country_name.getText().toString();
-        String counteyBrief = et_country_brief.getText().toString();
-        if (countryName.length()>0 && counteyBrief.length()>0) {
-            presenter.addCountry(countryName, counteyBrief);
+        String countryBrief = et_country_brief.getText().toString();
+        if (countryName.length()>0 && countryBrief.length()>0) {
+            presenter.addCountry(countryName, countryBrief);
         }else {
             Toast.makeText(getApplicationContext(),"Fill Spaces!",Toast.LENGTH_LONG).show();
         }
@@ -104,16 +104,6 @@ public class CountriesListActivity extends AppCompatActivity implements Countrie
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item != null) {
-            if (item.getItemId() == R.id.search_countries) {
-
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void setDataToRecycler(ArrayList<CountryModel> nCountriesArrayList) {
         if (firstTime) {
             mCountriesAdapter = new CountriesAdapter(this, nCountriesArrayList);
@@ -138,5 +128,11 @@ public class CountriesListActivity extends AppCompatActivity implements Countrie
         }else {
             Toast.makeText(getApplicationContext(), msg,Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 }

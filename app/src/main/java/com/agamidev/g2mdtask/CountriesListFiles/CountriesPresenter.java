@@ -27,6 +27,11 @@ public class CountriesPresenter implements CountriesContract.CountriesPresenterI
     }
 
     @Override
+    public void onDestroy() {
+        countriesView = null;
+    }
+
+    @Override
     public void loaded(ArrayList<CountryModel> countriesArrayList) {
         countriesView.setDataToRecycler(countriesArrayList);
     }

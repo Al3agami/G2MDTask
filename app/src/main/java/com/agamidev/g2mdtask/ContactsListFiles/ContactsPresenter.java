@@ -6,8 +6,8 @@ import com.agamidev.g2mdtask.Interfaces.ContactsContract;
 
 public class ContactsPresenter implements ContactsContract.ContactsPresenterInterface, ContactsContract.ContactsInteractorInterface.OnLoadedContactsFinished {
 
-    ContactsContract.ContactsInteractorInterface contactsInteractor;
     ContactsContract.ContactsView contactsView;
+    ContactsContract.ContactsInteractorInterface contactsInteractor;
 
     public ContactsPresenter(ContactsContract.ContactsView contactsView, ContactsContract.ContactsInteractorInterface contactsInteractor){
         this.contactsView = contactsView;
@@ -17,6 +17,11 @@ public class ContactsPresenter implements ContactsContract.ContactsPresenterInte
     @Override
     public void loadContacts() {
         contactsInteractor.loadContacts(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        contactsView = null;
     }
 
     @Override

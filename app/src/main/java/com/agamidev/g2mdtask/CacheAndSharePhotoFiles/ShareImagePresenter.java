@@ -26,6 +26,11 @@ public class ShareImagePresenter implements ShareImageContract.ShareImagePresent
     }
 
     @Override
+    public void onDestroy() {
+        shareImageView = null;
+    }
+
+    @Override
     public void setBitmap(Bitmap bm) {
         shareImageView.showImage(bm);
     }
